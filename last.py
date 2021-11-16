@@ -22,13 +22,16 @@ if user_input == "1":
             break
 
         frame_g = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    
-        faces = face_detector.detectMultiScale(frame_g, 1.3)
-        for face in faces:
-            x, y, w, h = face
 
-            emoji_re = cv2.resize(emoji, (h, w))
-            frame_g[y:y+h, x:x+w] = emoji_re
+        fliped = cv2.flip(frame_g, 1)
+        new = np.concatenate((frame_g , fliped) , 1)
+        
+#         faces = face_detector.detectMultiScale(frame_g, 1.3)
+#         for face in faces:
+#             x, y, w, h = face
+
+#             emoji_re = cv2.resize(emoji, (h, w))
+#             frame_g[y:y+h, x:x+w] = emoji_re
 
 
         cv2.imshow('Output', frame_g)
